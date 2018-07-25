@@ -29,8 +29,8 @@
             "avoid-escape"
         ],
         "semi": [
-            "error",
-            "always"
+            "always",
+            "error"
         ],
         "no-unused-vars": [
             "off"

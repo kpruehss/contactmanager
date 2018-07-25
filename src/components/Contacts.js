@@ -8,33 +8,43 @@ class Contacts extends Component {
         id: 1,
         name: 'John Doe',
         email: 'jdoe@gmail.com',
-        phone: '555-555-5555'
+        phone: '555-555-5555',
       },
       {
         id: 2,
         name: 'Karen Smith',
         email: 'karen@gmail.com',
-        phone: '666-666-6666'
+        phone: '666-666-6666',
       },
       {
         id: 3,
         name: 'Richard Johnson',
         email: 'dick@gmail.com',
-        phone: '616-616-6969'
-      }
-    ]
+        phone: '616-616-6969',
+      },
+    ],
   };
-  
+
+  deleteContact = id => {
+    const { contacts } = this.state;
+
+    const newContacts = contacts.filter(contact => contact.id !== id);
+
+    this.setState({
+      contacts: newContacts,
+    });
+  };
 
   render() {
-    const {contacts} = this.state;
+    const { contacts } = this.state;
     return (
       // React.Fragment used instead of div. Won't be rendered
-      <React.Fragment> 
+      <React.Fragment>
         {contacts.map(contact => (
           <Contact
             key={contact.id}
             contact={contact}
+            deleteClickHandler={this.deleteContact.bind(this, contact.id)}
           />
         ))}
       </React.Fragment>
