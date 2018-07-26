@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Contacts from 'components/contacts/Contacts';
 
 const Context = React.createContext();
 
