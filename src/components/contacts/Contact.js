@@ -14,10 +14,13 @@ class Contact extends Component {
   };
 
   onDeleteClick = async (id, dispatch) => {
-    // Run a fake delete request to jsonplaceholder, then delete from DOM
-    await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
-
-    dispatch({ type: 'DELETE_CONTACT', payload: id });
+    try {
+      // Run a fake delete request to jsonplaceholder, then delete from DOM
+      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    } catch (e) {
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    }
   };
 
   render() {
