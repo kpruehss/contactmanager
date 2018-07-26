@@ -8,6 +8,7 @@ class AddContact extends Component {
     name: '',
     email: '',
     phone: '',
+    errors: {},
   };
 
   onChangeHandler = e => this.setState({ [e.target.name]: e.target.value });
@@ -17,6 +18,20 @@ class AddContact extends Component {
 
     const { name, email, phone } = this.state;
 
+    // Check for Errors
+    if (name === '') {
+      this.setState({ errors: { name: 'Name is required' } });
+      return;
+    }
+    if (email === '') {
+      this.setState({ errors: { email: 'Email is required' } });
+      return;
+    }
+    if (phone === '') {
+      this.setState({ errors: { phone: 'Phone is required' } });
+      return;
+    }
+
     const newContact = {
       id: uuid(),
       name,
@@ -25,15 +40,17 @@ class AddContact extends Component {
     };
     dispatch({ type: 'ADD_CONTACT', payload: newContact });
 
+    // Clear form components
     this.setState({
       name: '',
       email: '',
       phone: '',
+      errors: {},
     });
   };
 
   render() {
-    const { name, email, phone } = this.state;
+    const { name, email, phone, errors } = this.state;
     return (
       <Consumer>
         {value => {
@@ -49,6 +66,7 @@ class AddContact extends Component {
                     value={name}
                     placeholder="Enter Name..."
                     onChange={this.onChangeHandler}
+                    error={errors.name}
                   />
                   <TextInputGroup
                     label="Email"
@@ -57,6 +75,7 @@ class AddContact extends Component {
                     type="email"
                     placeholder="Enter Email..."
                     onChange={this.onChangeHandler}
+                    error={errors.email}
                   />
                   <TextInputGroup
                     label="Phone"
@@ -64,6 +83,7 @@ class AddContact extends Component {
                     value={phone}
                     placeholder="Enter Phone..."
                     onChange={this.onChangeHandler}
+                    error={errors.phone}
                   />
                   <input
                     type="submit"
