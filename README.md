@@ -7,4 +7,4 @@ utilizing async/await and the new react context api. Fetch requests are sent
 to json placeholder api
 
 ## Deployed
-A running version of this SPA can be found at: [https://kpruehss.github.io/contactmanager/#/]
+A running version of this SPA can be found [here](https://kpruehss.github.io/contactmanager/#/)
